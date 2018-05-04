@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Prince Benson Meituan</title>
+</head>
+<body>
+	<h1>Prince Benson Fusion Restaurant</h1>
+	<p>Tasty Treats To Your Door</p>
+
+	<h2>Here are all our dishes!</h2>
+
+	<!-- Dish 1 -->
+	<p>Chocolate Mousse Cake: 20RMB</p>
+	<img src="http://tse3.mm.bing.net/th?id=OIP.PiAbttGV61XETPS_yw3GYgHaD2&pid=Api">
+
+	<!-- Dish 2 -->
+	<p>Napoleon Cake: 50RMB</p>
+	<img src="https://tse3.mm.bing.net/th?id=OIP.QWuPq19wYH59E08925JTwwHaF8&pid=Api">
+
+	<!-- Dish 3 -->
+	<p>Matcha Cake: 30RMB</p>
+	<img src="http://tse1.mm.bing.net/th?id=OIP.LOEPQyAns-ZZOJKNrhofFQHaEK&pid=Api">
+
+	<!-- Order Form -->
+	<h2>Place Your Order</h2>
+	<form action="{% url 'meituan:home_page' %}" method="POST">
+		{% csrf_token %}
+		<input type="text" name="dish" placeholder="Please Type Which Dish You Want"><br>
+		<textarea name="address" placeholder="Please Type Your Address"></textarea><br>
+		<input type="submit" value="Place Your Order" >
+	</form>
+
+	{% for order in orders %}
+	<!-- Show Order -->
+	<h1>Your Order:</h1>
+	<p>Dish Ordered:{{order.dish}}</p>
+	<p>Delivery Address:{{order.address}}</p><hr>
+	{% endfor %}
+</body>
+</html>
